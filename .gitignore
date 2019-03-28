@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+**/sqlite3
+**/.suo
+**/bin
+**/obj
+**/packages
+FunctionalLibrary/NuGet.exe
+*.nupkg
