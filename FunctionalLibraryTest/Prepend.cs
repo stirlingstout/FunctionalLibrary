@@ -34,5 +34,13 @@ namespace FunctionalLibraryTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Prepend1String()
+        {
+            var list = "123";
+            var actual = FList.Prepend('4', list);
+            var expected = "4123";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

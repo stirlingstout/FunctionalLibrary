@@ -38,11 +38,11 @@ namespace MetalUp.FunctionalLibrary
         /// <summary>
         /// Construct a list from a string 
         /// </summary>
-        public static FList<char> New(string str)
+        public static FList<char> AsChars(string str)
         {
             return str == "" ?
                 Empty<char>()
-                : new FList<char>(str[0], New(str.Substring(1)));
+                : new FList<char>(str[0], AsChars(str.Substring(1)));
         }
 
     /// <summary>
@@ -71,7 +71,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static bool IsEmpty(string str)
         {
-            return IsEmpty(New(str));
+            return IsEmpty(AsChars(str));
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static int Length(string str)
         {
-            return Length(New(str));
+            return Length(AsChars(str));
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static char Head(string str)
         {
-            return Head(New(str));
+            return Head(AsChars(str));
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static FList<char> Tail(string str)
         {
-            return Tail(New(str));
+            return Tail(AsChars(str));
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static char Last(string str)
         {
-            return Last(New(str));
+            return Last(AsChars(str));
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> Init(string str)
         {
-            return Init(New(str));
+            return Init(AsChars(str));
         }
         #endregion
 
@@ -166,7 +166,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static bool Elem(char elem, string str)
         {
-            return Elem(elem, New(str));
+            return Elem(elem, AsChars(str));
         }
         #endregion
 
@@ -180,7 +180,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> Prepend(char ch, string str)
         {
-            return Prepend(ch, New(str));
+            return Prepend(ch, AsChars(str));
         }
 
         /// <summary>
@@ -195,15 +195,15 @@ namespace MetalUp.FunctionalLibrary
 
         public static FList<char> Append(string str, string toAppend)
         {
-            return Append(New(str), New(toAppend));
+            return Append(AsChars(str), AsChars(toAppend));
         }
         public static FList<char> Append(FList<char> inputList, string toAppend)
         {
-            return Append(inputList, New(toAppend));
+            return Append(inputList, AsChars(toAppend));
         }
         public static FList<char> Append(string str, FList<char> toAppend)
         {
-            return Append(New(str), toAppend);
+            return Append(AsChars(str), toAppend);
         }
 
         // Remove first occurrence of item (if any) from list
@@ -217,7 +217,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> RemoveFirst(char item, string str)
         {
-            return RemoveFirst(item, New(str));
+            return RemoveFirst(item, AsChars(str));
         }
 
             //Remove all occurrences of item from list
@@ -231,7 +231,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> RemoveAll(char item, string str)
         {
-            return RemoveAll(item, New(str));
+            return RemoveAll(item, AsChars(str));
         }
 
         public static FList<T> Drop<T>(int number, FList<T> list)
@@ -244,7 +244,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> Drop(int number, string str)
         {
-            return Drop(number, New(str));
+            return Drop(number, AsChars(str));
         }
 
         public static FList<T> Take<T>(int n, FList<T> list)
@@ -257,7 +257,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> Take(int n, string str)
         {
-            return Take(n, New(str));
+            return Take(n, AsChars(str));
         }
 
         public static FList<T> Reverse<T>(FList<T> list)
@@ -268,7 +268,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> Reverse(string str)
         {
-            return Reverse(New(str));
+            return Reverse(AsChars(str));
         }
         #endregion
 
@@ -279,7 +279,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static bool Any(Func<char, bool> func, string str)
         {
-            return Any(func, New(str));
+            return Any(func, AsChars(str));
         }
 
         public static bool All<T>(Func<T, bool> func, FList<T> list)
@@ -288,7 +288,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static bool All(Func<char, bool> func, string str)
         {
-            return All(func, New(str));
+            return All(func, AsChars(str));
 
         }
 
@@ -302,7 +302,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> Filter(Func<char, bool> func, string str)
         {
-            return Filter(func, New(str));
+            return Filter(func, AsChars(str));
         }
 
         public static FList<U> Map<T, U>(Func<T, U> func, FList<T> list)
@@ -319,10 +319,10 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<U> Map<U>(Func<char, U> func, string str)
         {
-            return Map(func, New(str));
+            return Map(func, AsChars(str));
         }
 
-        public static T FoldL<T>(Func<T, T, T> func, T start, FList<T> list)
+        public static U FoldL<T, U>(Func<U, T, U> func, U start, FList<T> list)
         {
             return IsEmpty(list) ?
                 start
@@ -331,23 +331,23 @@ namespace MetalUp.FunctionalLibrary
                     : FoldL(func, func(start, Last(list)), Init(list));
         }
 
-        public static char FoldL(Func<char,char,char> func, char start, string str)
+        public static U FoldL<U>(Func<U,char,U> func, U start, string str)
         {
-            return FoldL(func, start, New(str));
+            return FoldL(func, start, AsChars(str));
         }
 
-        public static T FoldR<T>(Func<T, T, T> f, T start, FList<T> list)
+        public static U FoldR<T,U>(Func<T, U, U> func, U start, FList<T> list)
         {
             return list.Empty ?
                 start
                 : list.Tail.Empty ?
-                    f(list.Head, start)
-                    : FoldR(f, f(list.Head, start), list.Tail);
+                    func(list.Head, start)
+                    : FoldR(func, func(list.Head, start), list.Tail);
         }
 
-        public static char FoldR(Func<char, char, char> func, char start, string str)
+        public static U FoldR<U>(Func<char, U, U> func, U start, string str)
         {
-            return FoldR(func, start, New(str));
+            return FoldR(func, start, AsChars(str));
         }
 
         #endregion
@@ -370,7 +370,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static FList<char> SortBy(Func<char, char, bool> func, string str)
         {
-            return SortBy(func, New(str));
+            return SortBy(func, AsChars(str));
         }
 
         private static FList<T> LeftHalf<T>(FList<T> list)
@@ -400,7 +400,7 @@ namespace MetalUp.FunctionalLibrary
         }
         public static FList<char> Sort(string str, bool descending = false)
         {
-            return Sort(New(str), descending);
+            return Sort(AsChars(str), descending);
         }
 
         private static bool DefaultCompare<T>(T a, T b) where T : IComparable

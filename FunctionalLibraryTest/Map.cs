@@ -1,5 +1,6 @@
 ﻿using MetalUp.FunctionalLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace FunctionalLibraryTest
 {
@@ -33,5 +34,13 @@ namespace FunctionalLibraryTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Map1String()
+        {
+            var list = "abc";
+            var actual = FList.Map(i => Convert.ToInt32(i), list);
+            var expected = FList.New(97, 98, 99);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

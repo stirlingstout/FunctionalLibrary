@@ -69,5 +69,14 @@ namespace FunctionalLibraryTest
             var expected = FList.New(3,3);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void RemoveFirst6String()
+        {
+            var list = "3234";
+            var actual = FList.RemoveFirst('3', list);
+            var expected = "234";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

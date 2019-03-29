@@ -69,5 +69,14 @@ namespace FunctionalLibraryTest
             var expected = FList.Empty<int>();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void RemoveAll6String()
+        {
+            var list = "3234";
+            var actual = FList.RemoveAll('3', list);
+            var expected = "24";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

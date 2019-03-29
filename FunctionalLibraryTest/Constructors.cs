@@ -64,14 +64,14 @@ namespace FunctionalLibraryTest
         [TestMethod]
         public void NewWithEmptyString()
         {
-            var list = FList.New("");
+            var list = FList.AsChars("");
             Assert.IsTrue(FList.IsEmpty(list));
         }
 
         [TestMethod]
         public void NewWithString()
         {
-            var list = FList.New("Hello");
+            var list = FList.AsChars("Hello");
             Assert.IsFalse(FList.IsEmpty(list));
             Assert.AreEqual("Hello", list.ToString());
         }
@@ -79,9 +79,16 @@ namespace FunctionalLibraryTest
         [TestMethod]
         public void NewWithString2()
         {
-            var list = FList.New("Hello");
+            var list = FList.AsChars("Hello");
             var expected = FList.New('H', 'e', 'l', 'l', 'o');
-            Assert.AreEqual("Hello", list.ToString());
+            Assert.AreEqual(expected, list);
+        }
+
+        [TestMethod]
+        public void NewWithString3()
+        {
+            var list = FList.New("Hello");
+            Assert.AreEqual(1, FList.Length(list));
         }
 
     }

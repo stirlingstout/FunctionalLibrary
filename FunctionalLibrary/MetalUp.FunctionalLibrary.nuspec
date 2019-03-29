@@ -2,10 +2,9 @@
 <package >
   <metadata>
     <id>MetalUp.FunctionalLibrary</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <authors>Richard Pawson</authors>
     <owners>Richard Pawson</owners>
-    <license type="expression">MIT</license>
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/MetalUp/FunctionalLibrary</projectUrl> 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -13,6 +12,7 @@
     <summary>Referencing MetalUp.FunctionalLibrary, use FList.New to create immutable functional lists in the style of Haskell, then apply static functions such as FList.Head, .Append, .Map to the list(s).</summary>
     <description>.NET library that mimics behaviour of some Haskell functions and types.</description>
     <copyright>Copyright 2018</copyright>
+    <releaseNotes>Version 1.1 adds the ability to apply FList functions to a standard C#</releaseNotes>
   </metadata>
     <files>
       <file src="bin\debug\MetalUp.FunctionalLibrary.dll" target="lib\net452\MetalUp.FunctionalLibrary.dll"></file>

@@ -23,6 +23,14 @@ namespace FunctionalLibraryTest
             var expected = 1;
             Assert.AreEqual(expected, actual);
         }
-
+          
+        [TestMethod]
+        public void Last1String()
+        {
+            var list = "12345";
+            var actual = FList.Last(list);
+            var expected = '5';
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -49,6 +49,22 @@ namespace FunctionalLibraryTest
             var expected = FList.New(1, 2, 3, 4, 5);
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Take6()
+        {
+            var list = FList.New(1, 2, 3, 4, 5);
+            var actual = FList.Take(2, list);
+            var expected = FList.New(1, 2);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Take6String()
+        {
+            var list = "12345";
+            var actual = FList.Take(2, list);
+            var expected = "12";
+            Assert.AreEqual(expected, actual.ToString());
+        }
 
     }
 }

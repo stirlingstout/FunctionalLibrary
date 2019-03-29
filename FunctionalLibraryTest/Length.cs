@@ -9,7 +9,7 @@ namespace FunctionalLibraryTest
         [TestMethod]
         public void Length1()
         {
-            var list = FList.New(1, 2, 3, 4, 5);
+            var list = FList.New(0, 1, 2, 3, 4);
             var actual = FList.Length(list);
             var expected = 5;
             Assert.AreEqual(expected, actual);
@@ -33,6 +33,13 @@ namespace FunctionalLibraryTest
             Assert.AreEqual(expected, actual);
         }
 
-
+        [TestMethod]
+        public void Length1String()
+        {
+            var list = "01234";
+            var actual = FList.Length(list);
+            var expected = 5;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

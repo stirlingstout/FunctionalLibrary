@@ -59,5 +59,59 @@ namespace FunctionalLibraryTest
             var expected = FList.Empty<int>();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Drop1String()
+        {
+            var list = "12345"; ;
+            var actual = FList.Drop(1, list);
+            var expected = "2345";
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
+        [TestMethod]
+        public void Drop2String()
+        {
+            var list = "12345";
+            var actual = FList.Drop(4, list);
+            var expected = "5";
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
+        [TestMethod]
+        public void Drop3String()
+        {
+            var list = "12345";
+            var actual = FList.Drop(5, list);
+            var expected = "";
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
+        [TestMethod]
+        public void Drop4String()
+        {
+            var list = "12345";
+            var actual = FList.Drop(0, list);
+            var expected = "12345";
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
+        [TestMethod]
+        public void Drop5String()
+        {
+            var list = "12345";
+            var actual = FList.Drop(6, list);
+            var expected = "";
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
+        [TestMethod]
+        public void Drop6String()
+        {
+            var list = "";
+            var actual = FList.Drop(1, list);
+            var expected = "";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

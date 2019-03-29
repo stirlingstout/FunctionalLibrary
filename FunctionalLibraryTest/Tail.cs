@@ -39,5 +39,14 @@ namespace FunctionalLibraryTest
             var list = FList.Empty<int>();
             var actual = FList.Tail(list);
         }
+
+        [TestMethod]
+        public void Tail1String()
+        {
+            var list = "12345";
+            var actual = FList.Tail(list);
+            var expected = "2345";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

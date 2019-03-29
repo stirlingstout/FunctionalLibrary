@@ -99,5 +99,14 @@ namespace FunctionalLibraryTest
         }
 
         #endregion
+
+        [TestMethod]
+        public void Sort1String()
+        {
+            var list = "7146325";
+            var actual = FList.Sort(list);
+            var expected = "1234567";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

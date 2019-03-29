@@ -31,5 +31,14 @@ namespace FunctionalLibraryTest
             var list = FList.Empty<int>();
             var actual = FList.Head(list);
         }
+
+        [TestMethod]
+        public void Head1String()
+        {
+            var list = "12345";
+            var actual = FList.Head(list);
+            var expected = '1';
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -41,6 +41,13 @@ namespace FunctionalLibraryTest
             var expected = FList.Empty<int>();
             Assert.AreEqual(expected, actual);
         }
-
+        [TestMethod]
+        public void Reverse1String()
+        {
+            var list = "12345";
+            var actual = FList.Reverse(list);
+            var expected = "54321";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

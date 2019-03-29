@@ -59,5 +59,24 @@ namespace FunctionalLibraryTest
             var expected = false;
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Elem1String()
+        {
+            var list = "12345";
+            var actual = FList.Elem('3', list);
+            var expected = true;
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void Elem3String()
+        {
+            var list = "12345";
+            var actual = FList.Elem('6', list);
+            var expected = false;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

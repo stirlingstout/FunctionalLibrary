@@ -68,5 +68,14 @@ namespace FunctionalLibraryTest
             var expected = FList.New("Adi", "Ali", "Amy", "Max", "Zoe");
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void SortBy1String()
+        {
+            var list = "EBcCbF";
+            var actual = FList.SortBy((x, y) => x < y, list);
+            var expected = "BCEFbc";
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }

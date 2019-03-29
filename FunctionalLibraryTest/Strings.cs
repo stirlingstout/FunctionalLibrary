@@ -25,7 +25,7 @@ namespace FunctionalLibraryTest
         [TestMethod]
         public void Strings3()
         {
-            var list = FList.New("Tom");
+            var list = FList.AsChars("Tom");
             var expected = 'T';
             Assert.AreEqual(expected, FList.Head(list));
         }
@@ -33,7 +33,7 @@ namespace FunctionalLibraryTest
         [TestMethod]
         public void Strings4()
         {
-            var list = FList.New("Tom");
+            var list = FList.AsChars("Tom");
             var expected = FList.New('o', 'm');
             Assert.AreEqual(expected, FList.Tail(list));
         }
@@ -82,7 +82,7 @@ namespace FunctionalLibraryTest
         [TestMethod]
         public void Strings10()
         {
-            var list  = FList.New("Henry");
+            var list  = FList.AsChars("Henry");
             var expected = "HenryVIII";
             Assert.AreEqual(expected, FList.Append(list, "VIII").ToString());
         }
@@ -90,9 +90,9 @@ namespace FunctionalLibraryTest
         [TestMethod]
         public void Strings11()
         {
-            var list = FList.New("Henry");
+            var list = FList.AsChars("Henry");
             var expected = "HenryVIII";
-            Assert.AreEqual(expected, FList.Append(list, FList.New("VIII")).ToString());
+            Assert.AreEqual(expected, FList.Append(list, FList.AsChars("VIII")).ToString());
         }
 
     }
