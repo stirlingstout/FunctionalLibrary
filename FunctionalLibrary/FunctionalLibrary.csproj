@@ -45,6 +45,7 @@
     <Compile Include="FList Functions.cs" />
     <Compile Include="FList.cs" />
     <Compile Include="FRandom.cs" />
+    <Compile Include="Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

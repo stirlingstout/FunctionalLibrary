@@ -43,6 +43,7 @@
     <Compile Include="FoldR.cs" />
     <Compile Include="Elem.cs" />
     <Compile Include="Constructors.cs" />
+    <Compile Include="RangeTest.cs" />
     <Compile Include="RemoveAll.cs" />
     <Compile Include="Reverse.cs" />
     <Compile Include="Sort.cs" />

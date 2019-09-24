@@ -12,10 +12,10 @@
             Head = head;
             Tail = tail;
         }
-        internal bool Empty { get; private set; }
+        internal bool Empty { get; set; }
         internal T Head { get; private set; }
-        internal FList<T> Tail { get; private set; }
-
+        internal virtual FList<T> Tail { get; private set; }
+         
         public override string ToString()
         {
             //TODO: If the type is char then concatenate elements without ,

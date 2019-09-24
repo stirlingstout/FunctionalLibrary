@@ -3,4 +3,4 @@
 3. Open Package Manager Console
 4. PM> nuget pack C:\MetalUp\FunctionalLibrary\FunctionalLibrary\MetalUp.FunctionalLibrary.nuspec
 5. Sign in to Nuget.org
-6. Manage packages > Add New then drop nupkg file
+6. Select Upload from top menu bar then drop nupkg file

@@ -90,6 +90,5 @@ namespace FunctionalLibraryTest
             var list = FList.New("Hello");
             Assert.AreEqual(1, FList.Length(list));
         }
-
     }
 }

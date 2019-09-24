@@ -17,18 +17,33 @@ namespace MetalUp.FunctionalLibrary
             return new FList<T>();
         }
         /// <summary>
-        /// Construct a list from a head and tail. If head param is null returns the Tail only
+        /// Alternative to NewFList, for use where 'New' is not ambiugious
         /// </summary>
         public static FList<T> New<T>(T head, FList<T> tail)
+        {
+            return NewFList(head, tail);
+        }
+        /// <summary>
+        /// Construct a list from a head and tail. If head param is null returns the Tail only
+        /// </summary>
+        public static FList<T> NewFList<T>(T head, FList<T> tail)
         {
             return tail == null || IsEmpty(tail) ?
                 New(head)
                 : new FList<T>(head, tail);
+
+        }
+        /// <summary>
+        /// Alternative to NewFList, for use where 'New' is not ambiugious
+        /// </summary>
+        public static FList<T> New<T>(T head)
+        {
+            return NewFList(head);
         }
         /// <summary>
         /// Construct a list from a head only
         /// </summary>
-        public static FList<T> New<T>(T head)
+        public static FList<T> NewFList<T>(T head)
         {
             return head == null ?
                 Empty<T>()
@@ -45,10 +60,17 @@ namespace MetalUp.FunctionalLibrary
                 : new FList<char>(str[0], AsChars(str.Substring(1)));
         }
 
-    /// <summary>
-    /// Construct a list from a set of values as separate arguments
-    /// </summary>
-    public static FList<T> New<T>(params T[] items)
+        /// <summary>
+        /// Alternative to NewFList, for use where 'New' is not ambiugious
+        /// </summary>
+        public static FList<T> New<T>(params T[] items)
+        {
+            return NewFList(items);
+        }
+        /// <summary>
+        /// Construct a list from a set of values as separate arguments
+        /// </summary>
+        public static FList<T> NewFList<T>(params T[] items)
         {
             return items == null || items.Length == 0 ?
                 Empty<T>()
@@ -411,6 +433,29 @@ namespace MetalUp.FunctionalLibrary
         private static bool InverseDefaultCompare<T>(T a, T b) where T : IComparable
         {
             return b.CompareTo(a) <= 0;
+        }
+        #endregion
+
+        #region Ranges
+
+        public static FList<int> EnumFrom(int from)
+        {
+            return EnumFromTo(from, int.MaxValue);
+        }
+
+        public static FList<int> EnumFromThen(int from, int then)
+        {
+            return EnumFromThenTo(from, then, int.MaxValue);
+        }
+
+        public static FList<int> EnumFromTo(int from, int to)
+        {
+            return EnumFromThenTo(from, from+1, to);
+        }
+
+        public static FList<int> EnumFromThenTo(int from, int then, int to)
+        {
+            return new Range(from, to, then - from);
         }
         #endregion
     }
