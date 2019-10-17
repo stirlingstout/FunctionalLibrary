@@ -6,7 +6,7 @@ Library containing implementation of a functional list and supporting functions,
 
 Install package and add:
 
-using Quadrivia.FunctionalLibrary;
+using MetalUp.FunctionalLibrary;
 
 All list-related accessed via FList e.g.
 
