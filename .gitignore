@@ -9,3 +9,4 @@
 **/packages
 FunctionalLibrary/NuGet.exe
 *.nupkg
+/.vs/FunctionalLibrary/v17/TestStore/0

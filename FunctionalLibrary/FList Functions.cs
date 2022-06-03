@@ -297,7 +297,7 @@ namespace MetalUp.FunctionalLibrary
         #region Higher-order functions: Map, Filter, Reduce, Any
         public static bool Any<T>(Func<T, bool> func, FList<T> list)
         {
-            return !IsEmpty(Filter(func, list));
+            return IsEmpty(list) ? false : func(list.Head) ? true : Any(func, list.Tail);
         }
         public static bool Any(Func<char, bool> func, string str)
         {
@@ -306,7 +306,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static bool All<T>(Func<T, bool> func, FList<T> list)
         {
-            return !IsEmpty(list) && Length(Filter(func, list)) == Length(list);
+            return IsEmpty(list) ? true : !func(list.Head) ? false : All(func, Tail(list));
         }
         public static bool All(Func<char, bool> func, string str)
         {

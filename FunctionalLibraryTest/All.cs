@@ -43,7 +43,7 @@ namespace FunctionalLibraryTest
         {
             var list = FList.Empty<int>();
             var all = FList.All(i => i > 3, list);
-            Assert.IsFalse(all);
+            Assert.IsTrue(all);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace FunctionalLibraryTest
         {
             var list = "";
             var all = FList.All(i => i > '3', list);
-            Assert.IsFalse(all);
+            Assert.IsTrue(all);
         }
     }
 }
