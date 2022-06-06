@@ -9,10 +9,9 @@ namespace FunctionalLibraryTest
     {
 
         [TestMethod]
-        [ExpectedException(typeof(Exception), "Null being passed in place of an FList.")]
         public void IsEmptyWithNull()
         {
-                FList.IsEmpty<int>(null);       
+            FList.IsEmpty<int>(null);
         }
 
         [TestMethod]

@@ -6,6 +6,24 @@ namespace MetalUp.FunctionalLibrary
     // Static class that provides functions that apply to FList<T>
     public static class FList
     {
+        #region String representation
+        public static string ToString<T>(FList<T> list)
+        {
+            if (typeof(char).IsAssignableFrom(typeof(T)))
+            {
+                return FoldL((agg, c) => c + agg, "", list);
+            }
+            else if (list == null)
+            {
+                return "[]";
+            }
+            else
+            {
+                return $"[{list.ToString()}]";
+            }
+        }
+        #endregion
+
         #region Constructing lists
         /// <summary>
         /// Construct an empty list of specified type
@@ -14,7 +32,7 @@ namespace MetalUp.FunctionalLibrary
         /// <returns></returns>
         public static FList<T> Empty<T>()
         {
-            return new FList<T>();
+            return null;
         }
         /// <summary>
         /// Alternative to NewFList, for use where 'New' is not ambiugious
@@ -45,9 +63,7 @@ namespace MetalUp.FunctionalLibrary
         /// </summary>
         public static FList<T> NewFList<T>(T head)
         {
-            return head == null ?
-                Empty<T>()
-                : new FList<T>(head, Empty<T>());
+            return new FList<T>(head, Empty<T>());
         }
 
         /// <summary>
@@ -56,7 +72,7 @@ namespace MetalUp.FunctionalLibrary
         public static FList<char> AsChars(string str)
         {
             return str == "" ?
-                Empty<char>()
+                null
                 : new FList<char>(str[0], AsChars(str.Substring(1)));
         }
 
@@ -88,7 +104,7 @@ namespace MetalUp.FunctionalLibrary
         /// <param name="list">Must not be null</param>
         public static bool IsEmpty<T>(FList<T> list)
         {
-            return list == null ? throw new Exception("Null being passed in place of an FList.") : list.Empty;
+            return list == null;
         }
 
         public static bool IsEmpty(string str)
@@ -242,10 +258,10 @@ namespace MetalUp.FunctionalLibrary
             return RemoveFirst(item, AsChars(str));
         }
 
-            //Remove all occurrences of item from list
-            public static FList<T> RemoveAll<T>(T item, FList<T> list)
+        //Remove all occurrences of item from list
+        public static FList<T> RemoveAll<T>(T item, FList<T> list)
         {
-            return list.Empty ?
+            return IsEmpty(list) ?
                 list
                 : Head(list).Equals(item) ?
                     RemoveAll(item, Tail(list))
@@ -316,7 +332,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static FList<T> Filter<T>(Func<T, bool> func, FList<T> list)
         {
-            return list.Empty ?
+            return IsEmpty(list) ?
                 list
                 : func(list.Head) ?
                         New(Head(list), Filter(func, Tail(list))) :
@@ -353,16 +369,16 @@ namespace MetalUp.FunctionalLibrary
                     : FoldL(func, func(start, Last(list)), Init(list));
         }
 
-        public static U FoldL<U>(Func<U,char,U> func, U start, string str)
+        public static U FoldL<U>(Func<U, char, U> func, U start, string str)
         {
             return FoldL(func, start, AsChars(str));
         }
 
-        public static U FoldR<T,U>(Func<T, U, U> func, U start, FList<T> list)
+        public static U FoldR<T, U>(Func<T, U, U> func, U start, FList<T> list)
         {
-            return list.Empty ?
+            return IsEmpty(list) ?
                 start
-                : list.Tail.Empty ?
+                : IsEmpty(list.Tail) ?
                     func(list.Head, start)
                     : FoldR(func, func(list.Head, start), list.Tail);
         }
@@ -407,9 +423,9 @@ namespace MetalUp.FunctionalLibrary
 
         private static FList<T> Merge<T>(FList<T> a, FList<T> b, Func<T, T, bool> f)
         {
-            return a.Empty ?
+            return IsEmpty(a) ?
                 b :
-                b.Empty ?
+                IsEmpty(b) ?
                     a :
                     f(a.Head, b.Head) ?
                         new FList<T>(a.Head, Merge(a.Tail, b, f)) :
@@ -418,7 +434,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static FList<T> Sort<T>(FList<T> list, bool descending = false) where T : IComparable
         {
-            return descending? SortBy(InverseDefaultCompare, list) : SortBy(DefaultCompare, list);
+            return descending ? SortBy(InverseDefaultCompare, list) : SortBy(DefaultCompare, list);
         }
         public static FList<char> Sort(string str, bool descending = false)
         {
@@ -450,7 +466,7 @@ namespace MetalUp.FunctionalLibrary
 
         public static FList<int> EnumFromTo(int from, int to)
         {
-            return EnumFromThenTo(from, from+1, to);
+            return EnumFromThenTo(from, from + 1, to);
         }
 
         public static FList<int> EnumFromThenTo(int from, int then, int to)
@@ -460,3 +476,4 @@ namespace MetalUp.FunctionalLibrary
         #endregion
     }
 }
+operator

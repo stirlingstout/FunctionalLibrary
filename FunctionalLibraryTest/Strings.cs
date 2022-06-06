@@ -8,6 +8,34 @@ namespace FunctionalLibraryTest
     public class Strings
     {
         [TestMethod]
+        public void Strings0()
+        {
+            var list = FList.New('A', 'B', 'C');
+            var actual = FList.ToString(list);
+            Assert.AreEqual("ABC", actual);
+        }
+        [TestMethod]
+        public void Strings01()
+        {
+            var list = FList.Empty<char>();
+            var actual = FList.ToString(list);
+            Assert.AreEqual("", actual);
+        }
+        [TestMethod]
+        public void Strings02()
+        {
+            var list = FList.Empty<int>();
+            var actual = FList.ToString(list);
+            Assert.AreEqual("[]", actual);
+        }
+        [TestMethod]
+        public void Strings03()
+        {
+            var list = FList.New<int>(1,2,3);
+            var actual = FList.ToString(list);
+            Assert.AreEqual("[1, 2, 3]", actual);
+        }
+        [TestMethod]
         public void Strings1()
         {
             var list = FList.New("Tom", "Dick", "Harry");

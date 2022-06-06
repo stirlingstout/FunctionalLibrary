@@ -12,6 +12,7 @@ namespace FunctionalLibraryTest
             var list = FList.New(1, 2, 3);
             var actual = FList.Append(list, FList.New(4));
             var expected = FList.New(1, 2, 3, 4);
+            Assert.IsFalse(list.Equals((FList<int>)null));
             Assert.AreEqual(expected, actual);
         }
 

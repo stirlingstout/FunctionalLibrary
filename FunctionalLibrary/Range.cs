@@ -15,7 +15,7 @@
         internal override FList<int> Tail
         {
             get {
-                return Head + Step > Last ? new FList<int>() : 
+                return Head + Step > Last ? null : 
                                             new Range(Head+Step, Last, Step);
             }
         }

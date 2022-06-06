@@ -1,40 +1,51 @@
 ﻿namespace MetalUp.FunctionalLibrary
 {
-    public class FList<T>
+    public class FList<T> where T : IEquatable
     {
-        internal FList()
-        {
-            Empty = true;
-        }
+
+
         internal FList(T head, FList<T> tail)
         {
-            Empty = false;
             Head = head;
             Tail = tail;
         }
-        internal bool Empty { get; set; }
+
         internal T Head { get; private set; }
         internal virtual FList<T> Tail { get; private set; }
-         
+
         public override string ToString()
         {
-            //TODO: If the type is char then concatenate elements without ,
-            return Empty ? 
-                    "" 
-                    :Tail.Empty ?
-                            Head.ToString() 
-                            : typeof(char).IsAssignableFrom(typeof(T)) ? 
+            return Tail == null ?
+                            Head.ToString()
+                            : typeof(char).IsAssignableFrom(typeof(T)) ?
                                 Head.ToString() + Tail.ToString()
                                 : Head + ", " + Tail;
         }
 
         public override bool Equals(object obj)
         {
-            return !(obj is FList<T>) ?
-                false :
-                (Empty && (obj as FList<T>).Empty) ||
-                    (Head.Equals((obj as FList<T>).Head) && Tail.Equals((obj as FList<T>).Tail));
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (!(obj is FList<T>))
+            {
+                return false;
+            }
+            else if (!Head.Equals((obj as FList<T>).Head))
+            {
+                return false;
+            }
+            else if (Tail != null)
+            {
+                return Tail.Equals((obj as FList<T>).Tail);
+            }
+            else  // Heads are equal but this.Tail is null
+            {
+                return (obj as FList<T>).Tail == null;
+            }
         }
+
         public override int GetHashCode()
         {
             return Head.GetHashCode() + Tail.GetHashCode();

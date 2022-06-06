@@ -83,8 +83,7 @@ namespace FunctionalLibraryTest
         {
             var list = "12345";
             var actual = FList.Drop(5, list);
-            var expected = "";
-            Assert.AreEqual(expected, actual.ToString());
+            Assert.IsTrue(FList.IsEmpty(actual));
         }
 
         [TestMethod]
@@ -101,8 +100,7 @@ namespace FunctionalLibraryTest
         {
             var list = "12345";
             var actual = FList.Drop(6, list);
-            var expected = "";
-            Assert.AreEqual(expected, actual.ToString());
+            Assert.IsTrue(FList.IsEmpty(actual));
         }
 
         [TestMethod]
@@ -110,8 +108,7 @@ namespace FunctionalLibraryTest
         {
             var list = "";
             var actual = FList.Drop(1, list);
-            var expected = "";
-            Assert.AreEqual(expected, actual.ToString());
+            Assert.IsTrue(FList.IsEmpty(actual));
         }
     }
 }
